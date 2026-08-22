@@ -1,0 +1,24 @@
+#calculator {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 1500px;
+}
+
+#calc-buttons {
+  display: flex;
+}
+
+#calc-buttons button {
+  width: 200px;
+}
+
+#calc-numbers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#calc-operators {
+  display: flex;
+  flex-direction: column;
+}
