@@ -11,6 +11,11 @@
 
 #calc-buttons button {
   width: 200px;
+  height: 100px;
+}
+
+#back-btn {
+  flex-grow: 1;
 }
 
 #calc-numbers {
@@ -21,4 +26,14 @@
 #calc-operators {
   display: flex;
   flex-direction: column;
+}
+
+#calc-display {
+  display: flex;
+  height: 100px;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 48px;
+  border: 1px solid black;
+  padding-right: 10px;
 }
