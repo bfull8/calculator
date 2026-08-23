@@ -31,12 +31,17 @@ function operate(operator, a, b) {
   }
 }
 
+function updateDisplay(operator, a, b) {
+  const display = document.querySelector("#calc-display");
+  display.innerHTML = `${a} ${operator} ${b}`;
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
 
-// Add an event listener to each button
-const buttons = document.querySelectorAll("button");
+// Add an event listener to each button that contributes to formula
+const buttons = document.querySelectorAll(".formula-btn");
 buttons.forEach((button) =>
   button.addEventListener("click", (event) => {
     let value = event.target.value;
@@ -62,6 +67,9 @@ buttons.forEach((button) =>
     } else {
       operator = value;
     }
+    updateDisplay(operator, num1, num2);
     console.log(num1, operator, num2);
   }),
 );
+
+// Clear display for event listener
