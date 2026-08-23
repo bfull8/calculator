@@ -34,3 +34,12 @@ function operate(operator, a, b) {
 let num1;
 let num2;
 let operator;
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) =>
+  button.addEventListener("click", (event) => {
+    let value = event.target.value;
+    console.log(value);
+  }),
+);
