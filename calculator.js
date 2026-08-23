@@ -36,6 +36,14 @@ function updateDisplay(operator, a, b) {
   display.innerHTML = `${a} ${operator} ${b}`;
 }
 
+function clearDisplay() {
+  const display = document.querySelector("#calc-display");
+  display.innerHTML = "";
+  num1 = "";
+  num2 = "";
+  operator = "";
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -72,4 +80,6 @@ buttons.forEach((button) =>
   }),
 );
 
-// Clear display for event listener
+// Clear display  event listener
+const clearBtn = document.querySelector("#clear-btn");
+clearBtn.addEventListener("click", () => clearDisplay());
