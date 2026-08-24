@@ -44,6 +44,20 @@ function clearDisplay() {
   operator = "";
 }
 
+function backspace() {
+  const display = document.querySelector("#calc-display");
+  const displayText = display.textContent.split("");
+
+  displayText.splice(-1, 1);
+  display.textContent = displayText.join("");
+
+  //updateDisplay();
+  //display.innerHTML = "";
+  //num1 = "";
+  //num2 = "";
+  //operator = "";
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -83,3 +97,7 @@ buttons.forEach((button) =>
 // Clear display  event listener
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", () => clearDisplay());
+
+// Backspace event listener
+const backBtn = document.querySelector("#back-btn");
+backBtn.addEventListener("click", () => backspace());
