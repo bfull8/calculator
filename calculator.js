@@ -44,17 +44,14 @@ function clearDisplay() {
 }
 
 function backspace() {
-  const display = document.querySelector("#calc-display");
-  const displayText = display.textContent.split("");
-
-  displayText.splice(-1, 1);
-  display.textContent = displayText.join("");
-
-  //updateDisplay();
-  //display.innerHTML = "";
-  //num1 = "";
-  //num2 = "";
-  //operator = "";
+  if (num2 !== "") {
+    num2 = num2.slice(0,-1);
+  } else if (operator !== "") {
+    operator = operator.slice(0,-1);
+  } else {
+    num1 = num1.slice(0,-1)
+  }
+  updateDisplay(operator,num1,num2);
 }
 
 let num1 = "";
