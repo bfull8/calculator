@@ -31,16 +31,16 @@ function operate(operator, a, b) {
   }
 }
 
-function updateDisplay(operator, a, b) {
+function updateDisplay() {
   const display = document.querySelector("#calc-display");
-  display.innerHTML = `${a} ${operator} ${b}`;
+  display.innerHTML = `${num1} ${operator} ${num2}`;
 }
 
 function clearDisplay() {
   num1 = "";
   num2 = "";
   operator = "";
-  updateDisplay(operator,num1,num2);
+  updateDisplay();
 }
 
 function backspace() {
@@ -51,9 +51,16 @@ function backspace() {
   } else {
     num1 = num1.slice(0,-1)
   }
-  updateDisplay(operator,num1,num2);
+  updateDisplay();
 }
 
+function calculateFormula() {
+  const result = operate(operator, num1, num2);
+  const display = document.querySelector("#calc-display");
+  display.innerHTML = `${result}`;
+}
+
+// global variables for formula
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -85,8 +92,7 @@ buttons.forEach((button) =>
     } else {
       operator = value;
     }
-    updateDisplay(operator, num1, num2);
-    console.log(num1, operator, num2);
+    updateDisplay();
   }),
 );
 
@@ -97,3 +103,12 @@ clearBtn.addEventListener("click", () => clearDisplay());
 // Backspace event listener
 const backBtn = document.querySelector("#back-btn");
 backBtn.addEventListener("click", () => backspace());
+
+// Calculate formula
+const equalsBtn = document.querySelector("#equals-btn");
+equalsBtn.addEventListener("click", () => {
+  if (num2 !== "") {
+    calculateFormula();
+  }
+
+});
