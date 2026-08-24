@@ -37,11 +37,10 @@ function updateDisplay(operator, a, b) {
 }
 
 function clearDisplay() {
-  const display = document.querySelector("#calc-display");
-  display.innerHTML = "";
   num1 = "";
   num2 = "";
   operator = "";
+  updateDisplay(operator,num1,num2);
 }
 
 function backspace() {
