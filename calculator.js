@@ -27,6 +27,10 @@ function operate(operator, a, b) {
       return multiply(numA, numB);
       break;
     case "/":
+      if (numB === 0) {
+        return "You can't divide by zero, duh."
+        break;
+      }
       return divide(numA, numB);
       break;
   }
@@ -51,6 +55,7 @@ function clearDisplay() {
   num1 = "";
   num2 = "";
   operator = "";
+  justCalculated = false;
   updateDisplay();
 }
 
@@ -71,6 +76,7 @@ function calculateFormula() {
   num1 = result;
   operator = "";
   num2 = "";
+  justCalculated = true;
   updateOperatorHighlight();
 }
 
@@ -78,12 +84,17 @@ function calculateFormula() {
 let num1 = "";
 let num2 = "";
 let operator = "";
+let justCalculated = false;
 
 // Add an event listener to each button that contributes to formula
 const buttons = document.querySelectorAll(".formula-btn");
 buttons.forEach((button) =>
   button.addEventListener("click", (event) => {
     let value = event.target.value;
+    if (justCalculated && !"/+-*=.".includes(value)) {
+      clearDisplay();
+    }
+
 
     if (value === "-" && num1 === "") {
       num1 = "-";
@@ -110,6 +121,7 @@ buttons.forEach((button) =>
 
       if (num1 !== "") {
         operator = value;
+        justCalculated = false;
       }
     }
     updateDisplay();
