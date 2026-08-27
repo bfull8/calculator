@@ -15,25 +15,27 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
+  const [numA, numB] = [Number(a), Number(b)];
   switch (operator) {
     case "+":
-      return add(a, b);
+      return add(numA, numB);
       break;
     case "-":
-      return subtract(a, b);
+      return subtract(numA, numB);
       break;
     case "*":
-      return multiply(a, b);
+      return multiply(numA, numB);
       break;
     case "/":
-      return divide(a, b);
+      return divide(numA, numB);
       break;
   }
 }
 
 function updateDisplay() {
   const display = document.querySelector("#calc-display");
-  display.innerHTML = `${num1} ${operator} ${num2}`;
+  // Once a second number is being typed, show that number instead of the formula.
+  display.textContent = num2 !== "" ? num2 : num1;
 }
 
 function clearDisplay() {
@@ -46,8 +48,6 @@ function clearDisplay() {
 function backspace() {
   if (num2 !== "") {
     num2 = num2.slice(0,-1);
-  } else if (operator !== "") {
-    operator = operator.slice(0,-1);
   } else {
     num1 = num1.slice(0,-1)
   }
@@ -57,7 +57,11 @@ function backspace() {
 function calculateFormula() {
   const result = operate(operator, num1, num2);
   const display = document.querySelector("#calc-display");
-  display.innerHTML = `${result}`;
+  display.textContent = `${result}`;
+
+  num1 = result;
+  operator = "";
+  num2 = "";
 }
 
 // global variables for formula
@@ -73,8 +77,6 @@ buttons.forEach((button) =>
 
     if (value === "-" && num1 === "") {
       num1 = "-";
-    } else if (value === "-" && operator !== "" && num2 === "") {
-      num2 = "-";
     } else if (!"/+-*".includes(value)) {
       if (operator === "") {
         if (value === "." && num1.includes(".")) {
@@ -90,7 +92,15 @@ buttons.forEach((button) =>
         }
       }
     } else {
-      operator = value;
+      // Before a second number is entered, this simply changes the operator.
+      // After both numbers are present, calculate and use that result going forward.
+      if (num1 !== "" && operator !== "" && num2 !== "") {
+        calculateFormula();
+      }
+
+      if (num1 !== "") {
+        operator = value;
+      }
     }
     updateDisplay();
   }),
