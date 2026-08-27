@@ -71,7 +71,6 @@ function calculateFormula() {
   num1 = result;
   operator = "";
   num2 = "";
-  updateOperatorHighlight();
 }
 
 // global variables for formula
