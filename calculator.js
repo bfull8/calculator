@@ -1,17 +1,17 @@
 function add(a, b) {
-  return a + b;
+  return Math.round((a + b) * 10000) / 10000;
 }
 
 function subtract(a, b) {
-  return a - b;
+  return Math.round((a - b) * 10000) / 10000;
 }
 
 function multiply(a, b) {
-  return a * b;
+  return Math.round((a * b) * 10000) / 10000;
 }
 
 function divide(a, b) {
-  return a / b;
+  return Math.round((a / b) * 10000) / 10000;
 }
 
 function operate(operator, a, b) {
